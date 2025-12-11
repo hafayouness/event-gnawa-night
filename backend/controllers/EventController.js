@@ -1,4 +1,4 @@
-import { EventInfo, Booking } from "../models/index.js"; // ou le chemin correct vers tes modèles
+import { EventInfo, Booking } from "../config/database.js";
 
 export const createEvent = async (req, res) => {
   try {
@@ -47,11 +47,9 @@ export const updateEvent = async (req, res) => {
     const event = await EventInfo.findByPk(id);
     if (!event) return res.status(404).json({ message: "Event not found" });
 
-    Object.keys(req.body).forEach((key) => {
-      event[key] = req.body[key];
-    });
-
+    Object.assign(event, req.body);
     await event.save();
+
     return res
       .status(200)
       .json({ message: "Event updated successfully", event });
