@@ -1,42 +1,48 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
-import Booking from "./Booking.js";
 
-const EventInfo = sequelize.define(
-  "EventInfo",
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    price: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    status: {
-      type: DataTypes.ENUM("upcoming", "ongoing", "completed", "cancelled"),
-      defaultValue: "upcoming",
-    },
-  },
-  {
-    tableName: "event_info",
-    timestamps: true,
-  }
-);
+const defineBooking = (sequelize) => {
+  return sequelize.define(
+    "Booking",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
 
-EventInfo.hasMany(Booking, { foreignKey: "event_id", as: "bookings" });
+      full_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
 
-export default EventInfo;
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
+      confirmation_code: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+
+      artist_id: {
+        type: DataTypes.INTEGER,
+      },
+
+      event_id: {
+        type: DataTypes.INTEGER,
+      },
+    },
+    {
+      tableName: "bookings",
+      timestamps: true,
+    }
+  );
+};
+
+export default defineBooking;

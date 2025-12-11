@@ -1,4 +1,4 @@
-import { Artist, Booking } from "../models/index.js";
+import { Artist, Booking } from "../config/database.js";
 
 export const createArtist = async (req, res) => {
   try {
@@ -47,11 +47,9 @@ export const updateArtist = async (req, res) => {
     const artist = await Artist.findByPk(id);
     if (!artist) return res.status(404).json({ message: "Artist not found" });
 
-    Object.keys(req.body).forEach((key) => {
-      artist[key] = req.body[key];
-    });
-
+    Object.assign(artist, req.body);
     await artist.save();
+
     return res
       .status(200)
       .json({ message: "Artist updated successfully", artist });

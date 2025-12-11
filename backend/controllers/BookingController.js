@@ -1,4 +1,4 @@
-import { Booking, EventInfo, Artist } from "../models/index.js";
+import { Booking, EventInfo, Artist } from "../config/database.js";
 
 export const createBooking = async (req, res) => {
   try {
@@ -50,35 +50,15 @@ export const getBookingByCode = async (req, res) => {
   }
 };
 
-export const getBookingsByEmail = async (req, res) => {
-  const { email } = req.params;
-  try {
-    const bookings = await Booking.findAll({
-      where: { email },
-      include: [
-        { model: EventInfo, as: "event" },
-        { model: Artist, as: "artist" },
-      ],
-    });
-    return res.status(200).json({ bookings });
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Server error", error: error.message });
-  }
-};
-
 export const updateBooking = async (req, res) => {
   const { id } = req.params;
   try {
     const booking = await Booking.findByPk(id);
     if (!booking) return res.status(404).json({ message: "Booking not found" });
 
-    Object.keys(req.body).forEach((key) => {
-      booking[key] = req.body[key];
-    });
-
+    Object.assign(booking, req.body);
     await booking.save();
+
     return res
       .status(200)
       .json({ message: "Booking updated successfully", booking });
