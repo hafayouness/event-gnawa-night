@@ -2,10 +2,17 @@ import { Booking, EventInfo, Artist } from "../config/database.js";
 
 export const createBooking = async (req, res) => {
   try {
-    const booking = await Booking.create(req.body);
-    return res
-      .status(201)
-      .json({ message: "Booking created successfully", booking });
+    const booking = await Booking.create({
+      ...req.body,
+      booking_id: `BKG${Math.floor(Math.random() * 100000)}`,
+      ticket_id: `TKT${Math.floor(Math.random() * 100000)}`,
+      confirmation_code: `CODE${Math.floor(Math.random() * 100000)}`,
+    });
+
+    return res.status(201).json({
+      message: "Booking created successfully",
+      booking,
+    });
   } catch (error) {
     return res
       .status(500)

@@ -3,21 +3,26 @@ export interface Event {
   title: string;
   description: string;
   date: string;
-  location: string;
+  price?: number;
+  // location: string;
   image: string;
 }
 
 export interface Artist {
   id: number;
   name: string;
-  description: string;
-  image: string;
+  bio: string;
+  photo_url: string;
 }
 
 export interface Booking {
   id: number;
+  bookingId: string;
+  ticketId: string;
   eventId: number;
   name: string;
   email: string;
+  phone: string;
   code: string;
+  tickets: number;
 }

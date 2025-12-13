@@ -1,5 +1,5 @@
 import "dotenv/config";
-import sequelize, { Artist, Booking, EventInfo } from "../config/database.js";
+import sequelize, { EventInfo, Artist, Booking } from "../config/database.js";
 
 const seedDatabase = async () => {
   try {
@@ -13,19 +13,31 @@ const seedDatabase = async () => {
     // ------------------------------------
     const eventsData = [
       {
-        name: "Soirée Gnawa - Maalem Mahmoud Guinea",
+        title: "Soirée Gnawa - Maalem Mahmoud Guinea",
+        description:
+          "Une soirée magique avec Maalem Mahmoud Guinea. Rythmes ancestraux et transes collectives.",
         date: "2025-04-29",
-        price: 150.0,
+        price: 150,
+        image:
+          "https://images.unsplash.com/photo-1596158019512-77d9b9b0c528?fit=crop&w=800&q=80",
       },
       {
-        name: "Concert Gnawa - Maalem Mustapha Baqbou",
+        title: "Concert Gnawa - Maalem Mustapha Baqbou",
+        description:
+          "Concert exceptionnel de Maalem Mustapha Baqbou avec ses musiciens. Voyage sonore hypnotique.",
         date: "2025-04-30",
-        price: 180.0,
+        price: 180,
+        image:
+          "https://images.unsplash.com/photo-1506973035872-a4c637ebf2a2?fit=crop&w=800&q=80",
       },
       {
-        name: "Festival Gnawa - Lmaalem Hamid El Kasri",
+        title: "Festival Gnawa - Lmaalem Hamid El Kasri",
+        description:
+          "Grand festival Gnawa avec Lmaalem Hamid El Kasri. Rythmes traditionnels et influences modernes.",
         date: "2025-05-01",
-        price: 200.0,
+        price: 200,
+        image:
+          "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?fit=crop&w=800&q=80",
       },
     ];
 
@@ -40,21 +52,21 @@ const seedDatabase = async () => {
     const artistsData = [
       {
         name: "Maalem Mahmoud Guinea",
-        bio: "Virtuose du guembri reconnu internationalement, fusionne les rythmes traditionnels avec jazz et world music.",
+        bio: "Virtuose du guembri et maître de la tradition Gnawa.",
         photo_url:
-          "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400",
+          "https://www.musicamacondo.com/wp-content/uploads/2017/07/Portrait-1.jpg",
       },
       {
         name: "Maalem Mustapha Baqbou",
-        bio: "Maître Gnawa renommé internationalement, spécialiste des rituels hypnotiques et de la tradition ancestrale.",
+        bio: "Gardien des rituels ancestraux de la musique Gnawa.",
         photo_url:
-          "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400",
+          "https://www.festival-gnaoua.net/wp-content/uploads/2024/03/Maalem-Mustapha-Baqbou-Photo-4--scaled.jpg",
       },
       {
         name: "Lmaalem Hamid El Kasri",
-        bio: "Légende vivante de la musique Gnawa, plus de 50 ans d'expérience, maîtrise du guembri et Krakebs.",
+        bio: "Légende vivante de la musique Gnawa, voix profonde et charisme scénique.",
         photo_url:
-          "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400",
+          "https://www.songlines.co.uk/media/5520/maalem_hamid_el_kasri-7.jpg?center=0.19083969465648856,0.48469387755102039&mode=crop&width=1200&height=600&rnd=132973666070000000",
       },
     ];
 
@@ -64,162 +76,72 @@ const seedDatabase = async () => {
     console.log("✅ 3 Artists created");
 
     // ------------------------------------
-    // BOOKINGS
+    // BOOKINGS with bookingId & ticketId
     // ------------------------------------
     const bookingsData = [
-      // -------- Event 1 --------
+      // Event 1
       {
-        full_name: "Ahmed Benjelloun",
+        bookingId: "BKG001",
+        ticketId: "TKT001",
+        name: "Ahmed Benjelloun",
         email: "ahmed@example.com",
         phone: "+212612345678",
-        confirmation_code: "GN29A1",
-        artist_id: artist1.id,
-        event_id: event1.id,
+        code: "GN29A1",
+        eventId: event1.id,
       },
       {
-        full_name: "Laila Amrani",
+        bookingId: "BKG002",
+        ticketId: "TKT002",
+        name: "Laila Amrani",
         email: "laila@example.com",
         phone: "+212623456789",
-        confirmation_code: "GN29A2",
-        artist_id: artist1.id,
-        event_id: event1.id,
-      },
-      {
-        full_name: "Karim El Fassi",
-        email: "karim@example.com",
-        phone: "+212634567891",
-        confirmation_code: "GN29A3",
-        artist_id: artist1.id,
-        event_id: event1.id,
-      },
-      {
-        full_name: "Samira Bennani",
-        email: "samira@example.com",
-        phone: "+212645678912",
-        confirmation_code: "GN29A4",
-        artist_id: artist1.id,
-        event_id: event1.id,
-      },
-      {
-        full_name: "Omar Tazi",
-        email: "omar@example.com",
-        phone: "+212656789123",
-        confirmation_code: "GN29A5",
-        artist_id: artist1.id,
-        event_id: event1.id,
-      },
-      {
-        full_name: "Nadia Berrada",
-        email: "nadia@example.com",
-        phone: "+212667891234",
-        confirmation_code: "GN29A6",
-        artist_id: artist1.id,
-        event_id: event1.id,
+        code: "GN29A2",
+        eventId: event1.id,
       },
 
-      // -------- Event 2 --------
+      // Event 2
       {
-        full_name: "Rachid Alaoui",
+        bookingId: "BKG003",
+        ticketId: "TKT003",
+        name: "Rachid Alaoui",
         email: "rachid@example.com",
         phone: "+212612987654",
-        confirmation_code: "GN30B1",
-        artist_id: artist2.id,
-        event_id: event2.id,
+        code: "GN30B1",
+        eventId: event2.id,
       },
       {
-        full_name: "Zineb Chaoui",
+        bookingId: "BKG004",
+        ticketId: "TKT004",
+        name: "Zineb Chaoui",
         email: "zineb@example.com",
         phone: "+212622987654",
-        confirmation_code: "GN30B2",
-        artist_id: artist2.id,
-        event_id: event2.id,
-      },
-      {
-        full_name: "Hassan Mernissi",
-        email: "hassan@example.com",
-        phone: "+212633987654",
-        confirmation_code: "GN30B3",
-        artist_id: artist2.id,
-        event_id: event2.id,
-      },
-      {
-        full_name: "Malika Azizi",
-        email: "malika@example.com",
-        phone: "+212644987654",
-        confirmation_code: "GN30B4",
-        artist_id: artist2.id,
-        event_id: event2.id,
-      },
-      {
-        full_name: "Youssef Kettani",
-        email: "youssef@example.com",
-        phone: "+212655987654",
-        confirmation_code: "GN30B5",
-        artist_id: artist2.id,
-        event_id: event2.id,
-      },
-      {
-        full_name: "Aicha Sefrioui",
-        email: "aicha@example.com",
-        phone: "+212666987654",
-        confirmation_code: "GN30B6",
-        artist_id: artist2.id,
-        event_id: event2.id,
+        code: "GN30B2",
+        eventId: event2.id,
       },
 
-      // -------- Event 3 --------
+      // Event 3
       {
-        full_name: "Mohammed Chraibi",
+        bookingId: "BKG005",
+        ticketId: "TKT005",
+        name: "Mohammed Chraibi",
         email: "mohammed@example.com",
         phone: "+212612111222",
-        confirmation_code: "GN01C1",
-        artist_id: artist3.id,
-        event_id: event3.id,
+        code: "GN01C1",
+        eventId: event3.id,
       },
       {
-        full_name: "Fatima Ouazzani",
+        bookingId: "BKG006",
+        ticketId: "TKT006",
+        name: "Fatima Ouazzani",
         email: "fatima@example.com",
         phone: "+212623111222",
-        confirmation_code: "GN01C2",
-        artist_id: artist3.id,
-        event_id: event3.id,
-      },
-      {
-        full_name: "Said Benabdellah",
-        email: "said@example.com",
-        phone: "+212634111222",
-        confirmation_code: "GN01C3",
-        artist_id: artist3.id,
-        event_id: event3.id,
-      },
-      {
-        full_name: "Khadija Benjelloun",
-        email: "khadija@example.com",
-        phone: "+212645111222",
-        confirmation_code: "GN01C4",
-        artist_id: artist3.id,
-        event_id: event3.id,
-      },
-      {
-        full_name: "Amine Filali",
-        email: "amine@example.com",
-        phone: "+212656111222",
-        confirmation_code: "GN01C5",
-        artist_id: artist3.id,
-        event_id: event3.id,
-      },
-      {
-        full_name: "Sanaa Lahlou",
-        email: "sanaa@example.com",
-        phone: "+212667111222",
-        confirmation_code: "GN01C6",
-        artist_id: artist3.id,
-        event_id: event3.id,
+        code: "GN01C2",
+        eventId: event3.id,
       },
     ];
 
     await Booking.bulkCreate(bookingsData);
-    console.log("✅ 18 Bookings created");
+    console.log(`✅ ${bookingsData.length} Bookings created`);
 
     console.log("\n🎉 Database seeding completed successfully!");
     process.exit(0);

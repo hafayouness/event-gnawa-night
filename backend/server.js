@@ -23,7 +23,11 @@ app.use("/api/artists", artistRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, async () => {
+// app.listen(PORT, async () => {
+//   await testConnection();
+//   console.log(`🚀 Serveur démarré sur  http://192.168.68.107:${PORT}`);
+// });
+app.listen(PORT, "0.0.0.0", async () => {
   await testConnection();
-  console.log(`🚀 Serveur démarré sur ${PORT}`);
+  console.log(`🚀 Serveur démarré sur http://192.168.1.113:${PORT}`);
 });
