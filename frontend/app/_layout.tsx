@@ -34,8 +34,13 @@ export default function RootLayout() {
             id: "booking/:id",
           },
         },
+
         payment: "payment",
-        tickets: "tickets",
+        tickets: {
+          screens: {
+            id: "tickets/:id",
+          },
+        },
       },
     },
   };
