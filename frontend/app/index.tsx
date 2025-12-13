@@ -139,10 +139,11 @@ export default function HomeScreen() {
           />
           <Text style={styles.infoTitle}>Festival Gnawa - Essaouira</Text>
           <Text style={styles.infoText}>
-            🎵 Description: Festival Gnawa avec Lmaalem Hamid El Kasri, rythmes
-            ancestraux et modernité.
+            🎵 Description: Découvrez la magie de la musique Gnawa, entre
+            rythmes ancestraux, chants envoûtants et transes collectives. Une
+            expérience culturelle unique qui mêle tradition et modernité.
           </Text>
-          <Text style={styles.infoText}>📅 Date: 01 Mai 2025</Text>
+          <Text style={styles.infoText}>📅 Date: 29 Avril 2025</Text>
           <Text style={styles.infoText}>📍 Lieu: Essaouira, Maroc</Text>
           <Text style={styles.infoText}>
             🗓 Programme: Concerts, ateliers de musique traditionnelle,

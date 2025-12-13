@@ -23,7 +23,7 @@ export default function EventDetailsScreen() {
       try {
         if (!id) return;
         const response = await getArtistById(Number(id));
-        console.log("Fetched event data:", response.data.artist);
+        console.log("Fetched event data:", response.data.event);
         setartist(response.data.artist);
       } catch (error) {
         console.error("Erreur fetch event:", error);
