@@ -24,7 +24,7 @@ export default function EventDetailsScreen() {
         if (!id) return;
         const response = await getEventById(Number(id));
         console.log("Fetched event data:", response.data.event);
-        setEvent(response.data.event); // <- correction ici
+        setEvent(response.data.event);
       } catch (error) {
         console.error("Erreur fetch event:", error);
       } finally {
@@ -89,7 +89,7 @@ export default function EventDetailsScreen() {
             borderRadius: 15,
             marginBottom: 20,
           }}
-          resizeMode="cover"
+          resizeMode="contain"
         />
         <Text style={{ fontSize: 22, fontWeight: "700", marginBottom: 10 }}>
           {event.title}
