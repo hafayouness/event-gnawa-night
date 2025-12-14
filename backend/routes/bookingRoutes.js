@@ -3,7 +3,7 @@ import {
   createBooking,
   getBookingById,
   getBookingByCode,
-  // getBookingsByEmail,
+  getBookingsByEmail,
   updateBooking,
   deleteBooking,
 } from "../controllers/BookingController.js";
@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/:id", getBookingById);
 router.get("/code/:code", getBookingByCode);
-// router.get("/email/:email", getBookingsByEmail);
+router.get("/email/:email", getBookingsByEmail);
 
 router.post("/", createBooking);
 router.put("/:id", updateBooking);

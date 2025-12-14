@@ -90,3 +90,42 @@ export const deleteBooking = async (req, res) => {
       .json({ message: "Server error", error: error.message });
   }
 };
+export const getBookingsByEmail = async (req, res) => {
+  const { email } = req.params;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email is required" });
+  }
+
+  try {
+    const bookings = await Booking.findAll({
+      where: { email },
+      include: [
+        {
+          model: Artist,
+          as: "artist",
+          attributes: ["id", "name", "photo_url"],
+        },
+        {
+          model: EventInfo,
+          as: "event",
+          attributes: ["id", "title", "date"],
+        },
+      ],
+      order: [["createdAt", "DESC"]],
+    });
+
+    if (!bookings || bookings.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No bookings found for this email" });
+    }
+
+    return res.status(200).json({ bookings });
+  } catch (error) {
+    console.error("Error fetching bookings by email:", error);
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
+  }
+};

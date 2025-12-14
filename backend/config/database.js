@@ -18,12 +18,10 @@ const sequelize = new Sequelize(
   }
 );
 
-// Définir les modèles
 const Artist = defineArtist(sequelize);
 const Booking = defineBooking(sequelize);
 const EventInfo = defineEventInfo(sequelize);
 
-// Définir les relations
 Artist.hasMany(Booking, { foreignKey: "artist_id", as: "bookings" });
 Booking.belongsTo(Artist, { foreignKey: "artist_id", as: "artist" });
 

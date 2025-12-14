@@ -137,7 +137,7 @@ export default function HomeScreen() {
             }}
             style={styles.infoImage}
           />
-          <Text style={styles.infoTitle}>Festival Gnawa - Essaouira</Text>
+          <Text style={styles.infoTitle}>Festival Gnawa - Agadir</Text>
           <Text style={styles.infoText}>
             🎵 Description: Découvrez la magie de la musique Gnawa, entre
             rythmes ancestraux, chants envoûtants et transes collectives. Une

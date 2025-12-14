@@ -1,50 +1,151 @@
-# Welcome to your Expo app 👋
+La Grande Soirée Gnawa - Application Mobile & API Backend
+📖 Contexte du Projet
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Vous venez d’être embauché par le comité d'organisation de "La Grande Soirée Gnawa" à agadir pour développer une application mobile et une API backend afin de gérer cet événement culturel.
 
-## Get started
+La soirée met en avant :
 
-1. Install dependencies
+Plusieurs artistes Gnawa de renommée nationale
 
-   ```bash
-   npm install
-   ```
+Un programme varié réparti sur une soirée
 
-2. Start the app
+Un public nombreux à Agadir
 
-   ```bash
-   npx expo start
-   ```
+L’objectif est de créer une application mobile simple permettant de gérer les artistes, les réservations, et de partager facilement les informations sur l’événement.
 
-In the output, you'll find options to open the app in a
+📋 Besoins Fonctionnels
+Application Mobile
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Affichage des informations de l'événement
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Liste des artistes Gnawa participants
 
-## Get a fresh project
+Réservation de billets simple
 
-When you're ready, run:
+Affichage des réservations personnelles
 
-```bash
-npm run reset-project
-```
+Deep linking pour partager l’événement ou une réservation
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Fonctionnement offline minimal (cache des données)
 
-## Learn more
+Backend API REST
 
-To learn more about developing your project with Expo, look at the following resources:
+Gestion des artistes
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Gestion des réservations
 
-## Join the community
+Authentification JWT et sécurité avec Bcrypt (optionnel pour admin)
 
-Join our community of developers creating universal apps.
+Hébergement sur PostgreSQL avec Sequelize ORM
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+🎯 Objectifs de la Mission
+
+Développer une application mobile React Native (Expo)
+
+Créer une API REST Node.js/Express avec Sequelize et PostgreSQL
+
+Gérer l’état global avec Zustand
+
+Utiliser React Query pour le fetching et le cache
+
+Persistance locale avec AsyncStorage
+
+Implémenter le deep linking pour le partage
+
+🗄️ Base de Données
+
+3 tables PostgreSQL uniquement :
+
+artists – informations sur les artistes
+
+bookings – réservations des spectateurs
+
+event_info – informations générales sur l’événement
+
+📡 Endpoints API
+Event (Public)
+
+GET /api/event – Informations de l'événement
+
+Artists (Public)
+
+GET /api/artists – Liste de tous les artistes
+
+GET /api/artists/:id – Détails d’un artiste
+
+Bookings
+
+GET /api/bookings/code/:code – Réservation par code de confirmation
+
+GET /api/bookings/email/:email – Réservations par email
+
+POST /api/bookings – Créer une réservation
+
+Admin (Protégé par JWT, optionnel)
+
+POST /api/auth/login – Connexion admin
+
+POST /api/artists – Créer un artiste
+
+PUT /api/artists/:id – Modifier un artiste
+
+DELETE /api/artists/:id – Supprimer un artiste
+
+🔒 Ces routes sont protégées par JWT si le temps le permet
+
+🛠️ Tech Stack
+Backend
+
+Node.js + Express.js
+
+PostgreSQL + Sequelize ORM
+
+JWT (auth admin, optionnel)
+
+Bcrypt (optionnel pour sécuriser les mots de passe)
+
+Dotenv + CORS
+
+Frontend Mobile
+
+React Native (Expo)
+
+Zustand (gestion d’état)
+
+React Query (fetching et cache)
+
+AsyncStorage (persistance locale)
+
+React Navigation + Deep Linking
+
+Outils
+
+Git + GitHub
+
+Postman pour tester l’API
+
+📱 Écrans de l’Application
+
+Home – Informations générales + bannière
+
+Artists List – Liste des artistes avec photos
+
+Artist Detail – Détails d’un artiste + programme
+
+Booking Form – Formulaire de réservation
+
+My Bookings – Liste des réservations personnelles
+
+🚀 Installation & Démarrage
+Backend
+cd backend
+npm install
+
+# Configurer les variables : DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
+
+npm run dev
+
+Frontend
+cd frontend
+npm install
+npx expo start

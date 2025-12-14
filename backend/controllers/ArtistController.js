@@ -1,8 +1,24 @@
 import { Artist, Booking } from "../config/database.js";
 
 export const createArtist = async (req, res) => {
+  if (!req.body) {
+    return res.status(400).json({ message: "Request body is missing" });
+  }
+
+  const { name, bio, photo_url } = req.body;
+  console.log("Body reçu:", req.body);
+
+  if (!name || name.trim() === "") {
+    return res.status(400).json({ message: "Artist name is required" });
+  }
+
   try {
-    const artist = await Artist.create(req.body);
+    const artist = await Artist.create({
+      name: name.trim(),
+      bio,
+      photo_url,
+    });
+
     return res
       .status(201)
       .json({ message: "Artist created successfully", artist });
